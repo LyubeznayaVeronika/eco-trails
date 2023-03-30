@@ -1,12 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ecotrop</title>
+    <link rel="stylesheet" href="styles_ecotrop.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+   
 </head>
 <body>
+
+<header class="header">
+    <nav>
+        <ul class="header_menu">
+            <li class="menu_item menu_item_1"><a class="item_link" href="#">Карта</a></li>
+            <li class="menu_item"><a class="item_link" href="#">Экотропы</a></li>
+            <li class="menu_item"><a class="item_link" href="#">Галерея</a></li>
+            <li class="menu_item"><a class="item_link" href="#">О нас</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+    <div class="back">
+        <h1 class="mainTitle">Экотропы Минска</h1>
+        <a href="#map"><span class="material-icons md-48">expand_more</span></a>
+    </div>
+        <div class="map" id = "map" style = "max-width: 100%; height: 100vh"></div>
+
+      <script>
+         // Creating map options
+         var mapOptions = {
+            center: [53.90, 27.566670],
+            zoom: 11
+         }
+         
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         
+         // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+         
+         // Adding layer to the map
+         map.addLayer(layer);
+
+
+      </script>
     
+</main>
+<footer></footer>
 </body>
 </html>
