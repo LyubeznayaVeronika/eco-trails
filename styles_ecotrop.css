@@ -1,38 +1,57 @@
 html {
     scroll-behavior: smooth;
+    margin: 0;
 }
 
 h1, h2, h3, h4 {
     margin: 0;
 }
 
+ul, ol, li {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     font-family: "Arial";
     margin: 0;
-    background-color: rgb(32, 83, 57);
     font-size: 12px;
 }
+
+#map{
+    width:100%;
+    height:100vh;
+}
+
 
 
 /* header-start */
 
+/* .background_header {
+    background-color: ;
+    height: 48px;
+} */
+
 .header {
     display: flex;
-    justify-content: right;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
+    z-index: 999;
 }
 
 .header_menu {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.523);
+    justify-content: center;
+    background-color: #55846aa6;
     list-style-type: none;
     padding: 0;
     margin: 0;
     border-radius: 0 0 0 20px;
     font-size: 24px;
+    width: 100vw;
 }
+
 
 .menu_item {
     margin: 10px;
@@ -40,8 +59,9 @@ body {
 
 .item_link {
     text-decoration: none;
-    color: #2b794b;
+    color: #fff;
     padding: 10px;
+    font-size: 20px;
 }
 /* header-end */
 
@@ -73,6 +93,39 @@ body {
     margin: 0 auto;  
 }
 
+/* Styles discriptions */
+
+.ecotrails {
+    max-width: 500px;
+    min-width: 100px;
+    min-height: 200px;
+    max-height: 500px;
+    
+    background-color: #2b794c8b;
+    border-radius: 20px;
+    font-size: 16px;
+    overflow: auto;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000;
+    top: 10%;
+    left: 10%;
+}
+
+.ecotrailsName {
+    text-align: center;
+}
+
+.eco {
+    font-weight: bold;
+}
+
+.ecoDiscriptions {
+    text-indent: 10px;
+    margin: 0;
+}
+
 /* .borderMap {
     background: url(photo/border_map.png);
     background-position: center;
@@ -81,5 +134,21 @@ body {
     height: 550px;
 } */
 /* main-end */
+
+/* footer-start */
+
+.footer_inner {
+    background-color: #55846ac4;
+}
+
+.footer_menu {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* footer-end */
 
 

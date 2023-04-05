@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Чижовка</title>
+    <link rel="stylesheet" href="styles_ecotrop.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+    <!-- leaflet -->
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css"/>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+
+    <script src="ecotrails_line.js"></script>
+   
+</head>
+<body>
+
+<header class="header">
+    <nav>
+        <ul class="header_menu">
+            <li class="menu_item menu_item_1"><a class="item_link" href="#">Карта</a></li>
+            <li class="menu_item"><a class="item_link" href="#">Экотропы</a></li>
+            <li class="menu_item"><a class="item_link" href="#">Галерея</a></li>
+            <li class="menu_item"><a class="item_link" href="#">О нас</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+        <div class="map" id = "map" style = "max-width: 100%; height: 100vh">
+            <div class="ecotrails">
+                <h2 class="ecotrailsName">Чижовка</h2>
+                <p><span class="eco">Локация:</span></p>
+                <p><span class="eco">Протяженность:</span></p>
+                <p class="ecoDiscriptions"> </p>
+            </div>
+        </div>
+
+      <script>
+
+        // Map initialization
+        var map = L.map('map').setView([53.8477, 27.6356], 16);
+             
+        // osm layer
+        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+    
+        // google street
+        const googlestreet = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,    subdomains:['mt0','mt1','mt2','mt3'] });
+    
+        // google satelite
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']});
+        
+    
+        var baselayers = {
+        "OpenStreetMap": osm,
+        "Google": googlestreet,
+        "Google Satellite": googleSat
+                         };
+                         
+        L.control.layers(baselayers).addTo(map);
+    
+        baselayers["OpenStreetMap"].addTo(map);
+
+        
+        // ecotrails_Line //////////////////////////////////////////////////
+
+        var myStyle = {
+                        "color": "#3f9156",
+                        "weight": 5,
+                        "opacity": 0.80
+                      };
+
+        var  ecoline = L.geoJSON(ecotrailsline, {style:myStyle}).addTo(map)
+
+        ////////////////////////////////////////////////////////////////////
+
+
+      </script>
+
+  
+</main>
+<footer></footer>
+</body>
+</html>

@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ecotrop</title>
+    <title>Ecotrails</title>
     <link rel="stylesheet" href="styles_ecotrop.css">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- leaflet -->
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css"/>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
-   
-</head>
-<body>
 
+    <script src="ecotrop_centroid.js"></script>
+
+</head>
+
+<body>
+<div class="background_header"></div>
 <header class="header">
     <nav>
         <ul class="header_menu">
@@ -32,29 +36,100 @@
         <h1 class="mainTitle">Экотропы Минска</h1>
         <a href="#map"><span class="material-icons md-48">expand_more</span></a>
     </div>
-        <div class="map" id = "map" style = "max-width: 100%; height: 100vh"></div>
+    <div id="map"></div>
 
-      <script>
-         // Creating map options
-         var mapOptions = {
-            center: [53.90, 27.566670],
-            zoom: 11
-         }
-         
-         // Creating a map object
-         var map = new L.map('map', mapOptions);
-         
-         // Creating a Layer object
-         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
-         
-         // Adding layer to the map
-         map.addLayer(layer);
+    <script>
 
-
-      </script>
+        // Map initialization
+        var map = L.map('map').setView([53.90, 27.56667], 11);
     
+         ////////// ADD GEOJSON - ECOTROPS //////////
+    
+        var ecos = L.layerGroup().addTo(map);
+
+        var greenIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+        });
+    
+        var  ecotrop1 = L.geoJSON(eco1, {icon:greenIcon})
+        .bindPopup("<p>Цнянское водохранилище<br/>В гармонии с природой</p><a href='Цнянское водохранилище.html' title='Кликни'><img src = '/photo/1/Цна_схема.jpg' width='200'></a>").addTo(ecos);
+    
+        var ecotrop2 = L.geoJSON(eco2)
+        .bindPopup("<p>Чижовка</p><a href='Чижовка.html' title='Кликни'><img src = '/photo/2/чижовка.jpg' width='200'></a>").addTo(ecos);
+    
+        var ecotrop3 = L.geoJSON(eco3)
+        .bindPopup("<p>Малявки</p><img src = '/photo/3/малявки.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop4 = L.geoJSON(eco4)
+        .bindPopup("<p>Курасовщина</p><img src = '/photo/4/курасовщина.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop5 = L.geoJSON(eco5)
+        .bindPopup("<p>Лесное озеро</p><img src = '/photo/5/лесное_озеро.jpeg' width='200'>").addTo(ecos)
+    
+        var ecotrop6 = L.geoJSON(eco6)
+        .bindPopup("<p>,Белая дача</p><img src = '/photo/6/белая_дача.jpeg' width='200'>").addTo(ecos)
+    
+        var ecotrop7 = L.geoJSON(eco7)
+        .bindPopup("<p>Центральный ботанический сад</p><img src = '/photo/7/БНС.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop8 = L.geoJSON(eco8)
+        .bindPopup("<p>Птичья полянка</p><img src = '/photo/8/птичья_полянка.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop9 = L.geoJSON(eco9)
+        .bindPopup("<p>Город птиц</p><img src = '/photo/9/город_птиц.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop10 = L.geoJSON(eco10)
+        .bindPopup("<p>Серебряный Лог</p><img src = '/photo/10/серебряный_лог.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop11 = L.geoJSON(eco11)
+        .bindPopup("<p>Медвежино</p><img src = '/photo/11/медвежино.jpg' width='200'>").addTo(ecos)
+    
+        var ecotrop12 = L.geoJSON(eco12)
+        .bindPopup("<p>Яблоневый сад</p><img src = '/photo/12/яблоневый_сад.jpg' width='200'>").addTo(ecos)
+    
+        // osm layer
+        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+    
+        // google street
+        const googlestreet = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,    subdomains:['mt0','mt1','mt2','mt3'] });
+    
+        // google satelite
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']});
+        
+    
+        var baselayers = {
+        "OpenStreetMap": osm,
+        "Google": googlestreet,
+        "Google Satellite": googleSat
+    };
+    
+        var overlays = {
+                "Экотропы": ecos
+            }
+    
+        L.control.layers(baselayers, overlays).addTo(map);
+    
+        baselayers["OpenStreetMap"].addTo(map);
+       
+    </script>
 </main>
-<footer></footer>
+<footer>
+    <div class="footer_inner">
+        <ul class="footer_menu">
+            <li class="menu_item"><a class="item_link" href="#">Git</a></li>
+            <li class="menu_item"><a class="item_link" href="#">VK</a></li>
+            <li class="menu_item"><a class="item_link" href="#">Conatact</a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
+
